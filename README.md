@@ -21,9 +21,7 @@ parts of the application.
   * [Logs](#logs)
   * [Following Logs](#following-logs)
   * [Status](#status)
-  * [Run Application Tests](#application-tests)
-* [Database Diagram](#database-diagram)
-* [Postman Collection](#postman-collection)
+  * [Run Application Tests](#test)
 
 # Requirements
 
