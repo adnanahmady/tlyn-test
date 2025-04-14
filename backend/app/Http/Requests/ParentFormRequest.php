@@ -6,7 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 abstract class ParentFormRequest extends FormRequest
 {
-    abstract public function authorize(): bool;
+    public function authorize(): bool
+    {
+        return (bool) $this->user();
+    }
 
     public function rules(): array
     {

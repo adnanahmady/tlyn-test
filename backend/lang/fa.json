@@ -1,5 +1,7 @@
 {
     "User registered successfully.": "کاربر با موفقیت ثبت نام شد.",
     "Email or password is incorrect.": "ایمیل یا رمز عبور اشتباه است.",
-    "User logged in successfully.": "کاربر با موفقیت وارد شد."
+    "User logged in successfully.": "کاربر با موفقیت وارد شد.",
+    "Position created successfully.": "موقعیت با موفقیت ایجاد شد.",
+    "The selected case is invalid.": "گزینه انتخاب شده معتبر نیست."
 }
