@@ -5,6 +5,7 @@ namespace Tests\Feature\V1\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\FeatureTestCase;
 
 class LoginTest extends FeatureTestCase
@@ -72,8 +73,9 @@ class LoginTest extends FeatureTestCase
         ];
     }
 
+    #[Test]
     #[DataProvider('dataProviderForDataValidationTest')]
-    public function testDataValidation(
+    public function dataValidation(
         array|callable $data,
         string $expectedField,
         string $expectedMessage,
@@ -97,7 +99,8 @@ class LoginTest extends FeatureTestCase
         $response->assertJsonCount($expectedCount, 'errors');
     }
 
-    public function testGivenUserWhenLoggedInThenShouldReturnOk(): void
+    #[Test]
+    public function givenUserWhenLoggedInThenShouldReturnOk(): void
     {
         User::factory()->create([
             'email' => 'test@test.com',

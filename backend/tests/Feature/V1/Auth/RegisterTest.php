@@ -5,14 +5,16 @@ namespace Tests\Feature\V1\Auth;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 use Tests\Feature\FeatureTestCase;
 
 class RegisterTest extends FeatureTestCase
 {
+    #[Test]
     #[TestWith(['en', 'User registered successfully.'])]
     #[TestWith(['fa', 'کاربر با موفقیت ثبت نام شد.'])]
-    public function testGivenUserWhenRegisteredThenShouldReturnExpectedResponse(
+    public function givenUserWhenRegisteredThenShouldReturnExpectedResponse(
         string $locale,
         string $message,
     ): void {
@@ -146,8 +148,9 @@ class RegisterTest extends FeatureTestCase
         ];
     }
 
+    #[Test]
     #[DataProvider('dataProviderForDataValidationTest')]
-    public function testDataValidation(array|callable $data, string $error): void
+    public function dataValidation(array|callable $data, string $error): void
     {
         $this->login();
         $data = is_callable($data) ? $data() : $data;
@@ -159,7 +162,8 @@ class RegisterTest extends FeatureTestCase
         $response->assertJsonCount(1, 'errors');
     }
 
-    public function testGivenDataWhenCalledThenShouldReturnCreatedStatus(): void
+    #[Test]
+    public function givenDataWhenCalledThenShouldReturnCreatedStatus(): void
     {
         $this->login();
         $data = [
