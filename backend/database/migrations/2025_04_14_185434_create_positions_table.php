@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->tinyInteger('type')->index();
             $table->tinyInteger('status')->index();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +30,7 @@ return new class extends Migration {
                 $table->dropForeign(['user_id']);
                 $table->dropIndex(['type']);
                 $table->dropIndex(['status']);
+                $table->dropSoftDeletes();
             },
         );
         Schema::dropIfExists('positions');

@@ -3,10 +3,15 @@
 namespace App\Repositories\Positions;
 
 use App\Models\Position;
+use App\Support\Parents\Repositories\ParentRepository;
 use App\Types\Positions\PositionStatus;
 use App\Types\Positions\PositionType;
+use Illuminate\Database\Eloquent\Model;
 
-class PositionRepository implements PositionRepositoryInterface
+/**
+ * @extends ParentRepository<Position>
+ */
+class PositionRepository extends ParentRepository implements PositionRepositoryInterface
 {
     public function create(
         int $baseAmount,
@@ -23,5 +28,17 @@ class PositionRepository implements PositionRepositoryInterface
             'status' => $status->value,
             'user_id' => $userId,
         ]);
+    }
+
+    public function pricePerGram(int $positionId): int
+    {
+        $position = Position::findOrFail($positionId);
+
+        return $position->price_per_gram;
+    }
+
+    protected function model(): Model
+    {
+        return new Position();
     }
 }

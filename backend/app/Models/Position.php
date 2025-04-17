@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Support\Parents\Models\ParentModel;
 use App\Types\Positions\PositionStatus;
 use App\Types\Positions\PositionType;
-use Illuminate\Database\Eloquent\Model;
+use Database\Factories\PositionFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Position extends Model
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\HasFactory<PositionFactory>
+ */
+class Position extends ParentModel
 {
     protected $fillable = [
         'user_id',
