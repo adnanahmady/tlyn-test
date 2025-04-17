@@ -7,33 +7,39 @@ use Illuminate\Support\Collection;
 
 /**
  * @template TModel of Model
+ *
+ * @implements RepositoryInterface<TModel>
  */
 abstract class ParentRepository implements RepositoryInterface
 {
-    /** @return Model<TModel> */
+    /** @return TModel */
     abstract protected function model(): Model;
 
-    /** @return Collection<TModel> */
+    /** @return Collection<int, TModel> */
     public function all(): Collection
     {
         return $this->model()->all();
     }
 
-    /**
-     * @return Model<TModel>|null
-     */
+    /** @return TModel|null */
     public function find(string $id): ?Model
     {
         return $this->model()->find($id);
     }
 
-    /**
-     * @param int|Model<TModel> $model
-     */
+    /** @param int|TModel $model */
     public function delete(int|Model $model): bool
     {
         $id = is_int($model) ? $model : $model->getKey();
 
         return (bool) $this->find($id)->delete();
+    }
+
+    /**
+     * @return TModel|null
+     */
+    public function findAndLock(int $id): ?Model
+    {
+        return $this->model()->where('id', $id)->lockForUpdate()->first();
     }
 }

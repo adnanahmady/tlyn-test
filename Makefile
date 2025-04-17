@@ -41,6 +41,8 @@ logs:
 logs.follow:
 	@docker compose logs -f ${service}
 
+logs.f: logs.follow
+
 ps:
 	@docker compose ps
 

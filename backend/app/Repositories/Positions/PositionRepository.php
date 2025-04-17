@@ -6,6 +6,7 @@ use App\Models\Position;
 use App\Support\Parents\Repositories\ParentRepository;
 use App\Types\Positions\PositionStatus;
 use App\Types\Positions\PositionType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,11 +31,50 @@ class PositionRepository extends ParentRepository implements PositionRepositoryI
         ]);
     }
 
-    public function pricePerGram(int $positionId): int
-    {
-        $position = Position::findOrFail($positionId);
+    public function firstOpenPosition(
+        PositionType $type,
+        ?int $price = null,
+        int|array $ignoreIds = [],
+        int|array $ignoreUserIds = [],
+    ): ?Position {
+        $query = $this->openPositionQuery($type, $price);
 
-        return $position->price_per_gram;
+        if (!empty($ignoreIds)) {
+            $ignoreIds = is_array($ignoreIds) ? $ignoreIds : [$ignoreIds];
+
+            $query->whereNotIn('id', $ignoreIds);
+        }
+
+        if (!empty($ignoreUserIds)) {
+            $ignoreUserIds = is_array($ignoreUserIds) ? $ignoreUserIds : [$ignoreUserIds];
+
+            $query->whereNotIn('user_id', $ignoreUserIds);
+        }
+
+        return $query->first();
+    }
+
+    public function countOpenPositions(
+        PositionType $type,
+        ?int $price = null,
+    ): int {
+        return $this->openPositionQuery($type, $price)->count();
+    }
+
+    private function openPositionQuery(PositionType $type, ?int $price = null): Builder
+    {
+        $query = Position::query()
+            ->where('amount', '>', 0)
+            ->where('price_per_gram', '>', 0)
+            ->where('status', PositionStatus::Open)
+            ->where('type', $type)
+            ->orderBy('price_per_gram');
+
+        if ($price) {
+            $query->where('price_per_gram', $price);
+        }
+
+        return $query;
     }
 
     protected function model(): Model

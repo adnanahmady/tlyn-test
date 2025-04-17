@@ -14,12 +14,15 @@ interface RepositoryInterface
     public function all(): Collection;
 
     /**
-     * @return Model<TModel>|null
+     * @return TModel|null
      */
     public function find(string $id): ?Model;
 
-    /**
-     * @param int|Model<TModel> $model
-     */
+    /** @param int|TModel $model */
     public function delete(int|Model $model): bool;
+
+    /**
+     * @return TModel|null
+     */
+    public function findAndLock(int $id): ?Model;
 }

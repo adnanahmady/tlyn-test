@@ -35,7 +35,7 @@
     },
     "scripts": {
         "test": [
-            "phpunit --stop-on-failure --stop-on-error --stop-on-defect --colors=always"
+            "XDEBUG_MODE=trace phpunit --stop-on-failure --stop-on-error --stop-on-defect --colors=always --testdox"
         ],
         "fix": [
             "php-cs-fixer --config=.php-cs-fixer.php --diff --ansi fix $(pwd)"

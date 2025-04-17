@@ -53,6 +53,21 @@ services:
       HISTFILE: /home/docker/.history
       <<: *db-connection-setting
 
+   worker:
+     build:
+       context: .backend/config
+       dockerfile: Dockerfile
+     <<: *restart_policy
+     command: bash -c "php artisan queue:work --queue=default,transactions"
+     working_dir: /backend
+     tty: true
+     volumes:
+       - ./backend:/backend
+     links:
+       - database
+     environment:
+       <<: *db-connection-setting
+
   database:
     <<: *db-postgres-settings
     volumes:

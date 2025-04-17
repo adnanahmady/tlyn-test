@@ -34,4 +34,9 @@ class Position extends ParentModel
     {
         return $this->belongsTo(User::class);
     }
+
+    public function haveSameOwner(Position $position): bool
+    {
+        return $this->user_id === $position->user_id;
+    }
 }

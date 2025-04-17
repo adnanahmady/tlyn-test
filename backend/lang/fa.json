@@ -3,5 +3,8 @@
     "Email or password is incorrect.": "ایمیل یا رمز عبور اشتباه است.",
     "User logged in successfully.": "کاربر با موفقیت وارد شد.",
     "Position created successfully.": "موقعیت با موفقیت ایجاد شد.",
-    "The selected case is invalid.": "گزینه انتخاب شده معتبر نیست."
+    "The selected case is invalid.": "گزینه انتخاب شده معتبر نیست.",
+    "Transaction created successfully.": "تراکنش با موفقیت ایجاد شد.",
+    "Positions are not matched.": "موقعیت ها با هم هماهنگی ندارند.",
+    "Prices are not equal.": "مبالغ با هم برابر نیستند."
 }
