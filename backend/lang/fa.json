@@ -6,5 +6,7 @@
     "The selected case is invalid.": "گزینه انتخاب شده معتبر نیست.",
     "Transaction created successfully.": "تراکنش با موفقیت ایجاد شد.",
     "Positions are not matched.": "موقعیت ها با هم هماهنگی ندارند.",
-    "Prices are not equal.": "مبالغ با هم برابر نیستند."
+    "Prices are not equal.": "مبالغ با هم برابر نیستند.",
+    "Only sell positions are allowed to edit.": "فقط موقعیت های فروش مجاز به ویرایش هستند.",
+    "Position updated successfully.": "موقعیت با موفقیت بروزرسانی شد."
 }

@@ -3,20 +3,17 @@
 namespace App\Exceptions;
 
 use App\Support\Parents\Exceptions\ParentException;
-use App\Traits\Exceptions\ThrowIfTrait;
 use Illuminate\Http\Response;
 
-class IncompatiblePositionsException extends ParentException
+class ForbiddenToUpdateBuyPositionException extends ParentException
 {
-    use ThrowIfTrait;
-
     protected static function defaultMessage(): string
     {
-        return __('Positions are not matched.');
+        return __('Only sell positions are allowed to edit.');
     }
 
     protected static function defaultStatusCode(): int
     {
-        return Response::HTTP_CONFLICT;
+        return Response::HTTP_FORBIDDEN;
     }
 }

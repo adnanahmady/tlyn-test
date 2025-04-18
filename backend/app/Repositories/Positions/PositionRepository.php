@@ -31,6 +31,17 @@ class PositionRepository extends ParentRepository implements PositionRepositoryI
         ]);
     }
 
+    public function updateStatus(
+        Position $position,
+        PositionStatus $status,
+    ): Position {
+        $position->update([
+            'status' => $status->value,
+        ]);
+
+        return $position;
+    }
+
     public function firstOpenPosition(
         PositionType $type,
         ?int $price = null,

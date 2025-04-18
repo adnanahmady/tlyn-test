@@ -25,6 +25,7 @@ class Position extends ParentModel
     protected function casts(): array
     {
         return [
+            'amount' => 'float',
             'type' => PositionType::class,
             'status' => PositionStatus::class,
         ];
@@ -35,8 +36,10 @@ class Position extends ParentModel
         return $this->belongsTo(User::class);
     }
 
-    public function haveSameOwner(Position $position): bool
+    public function isOwner(int|User $user): bool
     {
-        return $this->user_id === $position->user_id;
+        $userId = is_int($user) ? $user : $user->getKey();
+
+        return $this->user_id === $userId;
     }
 }

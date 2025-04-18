@@ -31,4 +31,9 @@ interface PositionRepositoryInterface extends RepositoryInterface
         PositionType $type,
         ?int $price = null,
     ): int;
+
+    public function updateStatus(
+        Position $position,
+        PositionStatus $status,
+    ): Position;
 }

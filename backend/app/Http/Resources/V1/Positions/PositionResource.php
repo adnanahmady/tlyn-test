@@ -12,7 +12,7 @@ class PositionResource extends JsonResource
     {
         return [
             'id' => $this->getKey(),
-            'amount' => $this->amount,
+            'amount' => (float) $this->amount,
             'price_per_gram' => $this->price_per_gram,
             'type' => $this->type->name,
             'status' => $this->status->name,
