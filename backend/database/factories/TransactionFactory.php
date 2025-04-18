@@ -25,4 +25,25 @@ class TransactionFactory extends Factory
             'fee' => fake()->numberBetween(10, 100_000),
         ];
     }
+
+    public function price(int $price): self
+    {
+        return $this->state([
+            'price_per_gram' => $price,
+        ]);
+    }
+
+    public function buyer(Position $position): self
+    {
+        return $this->state([
+            'buyer_position_id' => $position->getKey(),
+        ]);
+    }
+
+    public function seller(Position $position): self
+    {
+        return $this->state([
+            'seller_position_id' => $position->getKey(),
+        ]);
+    }
 }

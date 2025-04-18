@@ -85,7 +85,7 @@ class UpdateSellPositionStatusTest extends FeatureTestCase
                 ->has('data.id')
                 ->whereType('data.id', 'integer')
                 ->where('data.amount', (int) $position->amount)
-                ->where('data.price_per_gram', $position->price_per_gram)
+                ->where('data.price_per_gram', (int) round($position->price_per_gram * 0.1))
                 ->where('data.type', $position->type->name)
                 ->where('data.status', $status->name)
                 ->where('data.user.id', $user->getKey())

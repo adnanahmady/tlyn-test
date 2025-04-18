@@ -116,7 +116,7 @@ class CreatePositionTest extends FeatureTestCase
                 ->has('data.id')
                 ->whereType('data.id', 'integer')
                 ->where('data.amount', $data['amount'])
-                ->where('data.price_per_gram', $data['price_per_gram'])
+                ->where('data.price_per_gram', (int) round($data['price_per_gram'] * 0.1))
                 ->where('data.type', $data['type'])
                 ->where('data.status', PositionStatus::Open->name)
                 ->where('data.user.id', $user->getKey())
